@@ -4,7 +4,7 @@
 #
 Name     : pycurl
 Version  : 7.19.5.1
-Release  : 11
+Release  : 12
 URL      : http://pycurl.sourceforge.net/download/pycurl-7.19.5.1.tar.gz
 Source0  : http://pycurl.sourceforge.net/download/pycurl-7.19.5.1.tar.gz
 Summary  : PycURL -- cURL library module for Python
