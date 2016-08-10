@@ -1,5 +1,5 @@
 PKG_NAME := pycurl
-URL := http://pycurl.sourceforge.net/download/pycurl-7.21.5.tar.gz
+URL := https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.tar.gz
 ARCHIVES :=
 
 include ../common/Makefile.common

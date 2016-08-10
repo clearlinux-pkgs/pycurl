@@ -5,3 +5,5 @@
 curl
 curl-dev
 openssl-dev
+nghttp2-dev
+zlib-dev
