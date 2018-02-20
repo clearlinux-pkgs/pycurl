@@ -4,13 +4,12 @@
 #
 Name     : pycurl
 Version  : 7.43.0.1
-Release  : 39
+Release  : 40
 URL      : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.1.tar.gz
 Source0  : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.1.tar.gz
 Summary  : PycURL -- A Python Interface To The cURL library
 Group    : Development/Tools
 License  : LGPL-2.1 MIT
-Requires: pycurl-legacypython
 Requires: pycurl-python3
 Requires: pycurl-doc
 Requires: pycurl-python
@@ -77,12 +76,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517926559
+export SOURCE_DATE_EPOCH=1519142114
 python2 setup.py build -b py2 --with-ssl
 python3 setup.py build -b py3 --with-ssl
 
 %install
-export SOURCE_DATE_EPOCH=1517926559
+export SOURCE_DATE_EPOCH=1519142114
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
