@@ -4,14 +4,14 @@
 #
 Name     : pycurl
 Version  : 7.43.0.1
-Release  : 46
+Release  : 47
 URL      : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.1.tar.gz
 Source0  : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.1.tar.gz
 Summary  : PycURL -- A Python Interface To The cURL library
 Group    : Development/Tools
 License  : LGPL-2.1 MIT
 Requires: pycurl-python3
-Requires: pycurl-doc
+Requires: pycurl-license
 Requires: pycurl-python
 BuildRequires : curl
 BuildRequires : curl-dev
@@ -20,9 +20,12 @@ BuildRequires : openssl-dev
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pkgconfig(libidn)
-
+BuildRequires : python-core
+BuildRequires : python-dev
+BuildRequires : python3-core
 BuildRequires : python3-dev
 BuildRequires : setuptools
+BuildRequires : setuptools-legacypython
 BuildRequires : zlib-dev
 
 %description
@@ -48,6 +51,14 @@ Requires: python-core
 
 %description legacypython
 legacypython components for the pycurl package.
+
+
+%package license
+Summary: license components for the pycurl package.
+Group: Default
+
+%description license
+license components for the pycurl package.
 
 
 %package python
@@ -76,13 +87,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519142114
+export SOURCE_DATE_EPOCH=1530382672
 python2 setup.py build -b py2 --with-ssl
 python3 setup.py build -b py3 --with-ssl
 
 %install
-export SOURCE_DATE_EPOCH=1519142114
+export SOURCE_DATE_EPOCH=1530382672
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/pycurl
+cp COPYING-MIT %{buildroot}/usr/share/doc/pycurl/COPYING-MIT
+cp COPYING-LGPL %{buildroot}/usr/share/doc/pycurl/COPYING-LGPL
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
@@ -93,12 +107,17 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/pycurl/*
 
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/pycurl/COPYING-LGPL
+/usr/share/doc/pycurl/COPYING-MIT
 
 %files python
 %defattr(-,root,root,-)
