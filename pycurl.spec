@@ -4,15 +4,15 @@
 #
 Name     : pycurl
 Version  : 7.43.0.2
-Release  : 53
+Release  : 54
 URL      : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.2.tar.gz
 Source0  : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.2.tar.gz
 Summary  : PycURL -- A Python Interface To The cURL library
 Group    : Development/Tools
 License  : ICU LGPL-2.1
-Requires: pycurl-python3
-Requires: pycurl-license
-Requires: pycurl-python
+Requires: pycurl-license = %{version}-%{release}
+Requires: pycurl-python = %{version}-%{release}
+Requires: pycurl-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils23
 BuildRequires : buildreq-distutils3
 BuildRequires : curl
@@ -59,7 +59,7 @@ license components for the pycurl package.
 %package python
 Summary: python components for the pycurl package.
 Group: Default
-Requires: pycurl-python3
+Requires: pycurl-python3 = %{version}-%{release}
 
 %description python
 python components for the pycurl package.
@@ -82,16 +82,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536632442
+export SOURCE_DATE_EPOCH=1542428932
 python2 setup.py build -b py2 --with-ssl
 python3 setup.py build -b py3 --with-ssl
 
 %install
-export SOURCE_DATE_EPOCH=1536632442
+export SOURCE_DATE_EPOCH=1542428932
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/pycurl
-cp COPYING-LGPL %{buildroot}/usr/share/doc/pycurl/COPYING-LGPL
-cp COPYING-MIT %{buildroot}/usr/share/doc/pycurl/COPYING-MIT
+mkdir -p %{buildroot}/usr/share/package-licenses/pycurl
+cp COPYING-LGPL %{buildroot}/usr/share/package-licenses/pycurl/COPYING-LGPL
+cp COPYING-MIT %{buildroot}/usr/share/package-licenses/pycurl/COPYING-MIT
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
@@ -103,55 +103,20 @@ echo ----[ mark ]----
 
 %files doc
 %defattr(0644,root,root,0755)
-%doc /usr/share/doc/pycurl/AUTHORS
-%doc /usr/share/doc/pycurl/ChangeLog
-%doc /usr/share/doc/pycurl/INSTALL.rst
-%doc /usr/share/doc/pycurl/README.rst
-%doc /usr/share/doc/pycurl/RELEASE-NOTES.rst
-%doc /usr/share/doc/pycurl/examples/basicfirst.py
-%doc /usr/share/doc/pycurl/examples/file_upload.py
-%doc /usr/share/doc/pycurl/examples/linksys.py
-%doc /usr/share/doc/pycurl/examples/opensocketexception.py
-%doc /usr/share/doc/pycurl/examples/quickstart/file_upload_buffer.py
-%doc /usr/share/doc/pycurl/examples/quickstart/file_upload_real.py
-%doc /usr/share/doc/pycurl/examples/quickstart/file_upload_real_fancy.py
-%doc /usr/share/doc/pycurl/examples/quickstart/follow_redirect.py
-%doc /usr/share/doc/pycurl/examples/quickstart/form_post.py
-%doc /usr/share/doc/pycurl/examples/quickstart/get.py
-%doc /usr/share/doc/pycurl/examples/quickstart/get_python2.py
-%doc /usr/share/doc/pycurl/examples/quickstart/get_python2_https.py
-%doc /usr/share/doc/pycurl/examples/quickstart/get_python3.py
-%doc /usr/share/doc/pycurl/examples/quickstart/get_python3_https.py
-%doc /usr/share/doc/pycurl/examples/quickstart/put_buffer.py
-%doc /usr/share/doc/pycurl/examples/quickstart/put_file.py
-%doc /usr/share/doc/pycurl/examples/quickstart/response_headers.py
-%doc /usr/share/doc/pycurl/examples/quickstart/response_info.py
-%doc /usr/share/doc/pycurl/examples/quickstart/write_file.py
-%doc /usr/share/doc/pycurl/examples/retriever-multi.py
-%doc /usr/share/doc/pycurl/examples/retriever.py
-%doc /usr/share/doc/pycurl/examples/sfquery.py
-%doc /usr/share/doc/pycurl/examples/smtp.py
-%doc /usr/share/doc/pycurl/examples/ssh_keyfunction.py
-%doc /usr/share/doc/pycurl/examples/xmlrpc_curl.py
+%doc /usr/share/doc/pycurl/*
 
 %files legacypython
 %defattr(-,root,root,-)
-/usr/lib/python2.7/site-packages/curl/__init__.py
-/usr/lib/python2.7/site-packages/curl/__init__.pyc
-/usr/lib/python2.7/site-packages/pycurl-7.43.0.2-py2.7.egg-info
-/usr/lib/python2.7/site-packages/pycurl.so
+/usr/lib/python2*/*
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/pycurl/COPYING-LGPL
-/usr/share/doc/pycurl/COPYING-MIT
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pycurl/COPYING-LGPL
+/usr/share/package-licenses/pycurl/COPYING-MIT
 
 %files python
 %defattr(-,root,root,-)
 
 %files python3
 %defattr(-,root,root,-)
-/usr/lib/python3.7/site-packages/curl/__init__.py
-/usr/lib/python3.7/site-packages/curl/__pycache__/__init__.cpython-37.pyc
-/usr/lib/python3.7/site-packages/pycurl-7.43.0.2-py3.7.egg-info
-/usr/lib/python3.7/site-packages/pycurl.cpython-37m-x86_64-linux-gnu.so
+/usr/lib/python3*/*
