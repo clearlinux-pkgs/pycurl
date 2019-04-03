@@ -4,7 +4,7 @@
 #
 Name     : pycurl
 Version  : 7.43.0.2
-Release  : 56
+Release  : 57
 URL      : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.2.tar.gz
 Source0  : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.2.tar.gz
 Summary  : PycURL -- A Python Interface To The cURL library
@@ -13,7 +13,6 @@ License  : ICU LGPL-2.1
 Requires: pycurl-license = %{version}-%{release}
 Requires: pycurl-python = %{version}-%{release}
 Requires: pycurl-python3 = %{version}-%{release}
-BuildRequires : buildreq-distutils23
 BuildRequires : buildreq-distutils3
 BuildRequires : curl
 BuildRequires : curl-dev
@@ -24,12 +23,8 @@ BuildRequires : python-dev
 BuildRequires : zlib-dev
 
 %description
+PycURL -- A Python Interface To The cURL library
 ================================================
-        
-        PycURL is a Python interface to `libcurl`_, the multiprotocol file
-        transfer library. Similarly to the urllib_ Python module,
-        PycURL can be used to fetch objects identified by a URL from a Python program.
-        Beyond simple fetches however PycURL exposes most of the functionality of
 
 %package doc
 Summary: doc components for the pycurl package.
@@ -37,15 +32,6 @@ Group: Documentation
 
 %description doc
 doc components for the pycurl package.
-
-
-%package legacypython
-Summary: legacypython components for the pycurl package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the pycurl package.
 
 
 %package license
@@ -82,18 +68,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542428932
-python2 setup.py build -b py2 --with-ssl
-python3 setup.py build -b py3 --with-ssl
+export SOURCE_DATE_EPOCH=1554325678
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build  --with-ssl
 
 %install
-export SOURCE_DATE_EPOCH=1542428932
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pycurl
 cp COPYING-LGPL %{buildroot}/usr/share/package-licenses/pycurl/COPYING-LGPL
 cp COPYING-MIT %{buildroot}/usr/share/package-licenses/pycurl/COPYING-MIT
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -104,10 +89,6 @@ echo ----[ mark ]----
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/pycurl/*
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files license
 %defattr(0644,root,root,0755)
