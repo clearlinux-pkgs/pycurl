@@ -4,7 +4,7 @@
 #
 Name     : pycurl
 Version  : 7.43.0.2
-Release  : 59
+Release  : 60
 URL      : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.2.tar.gz
 Source0  : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.2.tar.gz
 Summary  : PycURL -- A Python Interface To The cURL library
@@ -19,12 +19,15 @@ BuildRequires : curl-dev
 BuildRequires : nghttp2-dev
 BuildRequires : openssl-dev
 BuildRequires : pkgconfig(libidn)
-BuildRequires : python-dev
 BuildRequires : zlib-dev
 
 %description
-PycURL -- A Python Interface To The cURL library
 ================================================
+        
+        PycURL is a Python interface to `libcurl`_, the multiprotocol file
+        transfer library. Similarly to the urllib_ Python module,
+        PycURL can be used to fetch objects identified by a URL from a Python program.
+        Beyond simple fetches however PycURL exposes most of the functionality of
 
 %package doc
 Summary: doc components for the pycurl package.
@@ -67,8 +70,13 @@ python3 components for the pycurl package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1554325678
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569441900
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build  --with-ssl
 
