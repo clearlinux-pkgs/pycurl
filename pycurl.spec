@@ -4,7 +4,7 @@
 #
 Name     : pycurl
 Version  : 7.43.0.5
-Release  : 66
+Release  : 67
 URL      : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.5.tar.gz
 Source0  : https://dl.bintray.com/pycurl/pycurl/pycurl-7.43.0.5.tar.gz
 Summary  : PycURL -- A Python Interface To The cURL library
@@ -22,87 +22,12 @@ BuildRequires : pkgconfig(libidn)
 BuildRequires : zlib-dev
 
 %description
-PycURL -- A Python Interface To The cURL library
 ================================================
-
-PycURL is a Python interface to `libcurl`_, the multiprotocol file
-transfer library. Similarly to the urllib_ Python module,
-PycURL can be used to fetch objects identified by a URL from a Python program.
-Beyond simple fetches however PycURL exposes most of the functionality of
-libcurl, including:
-
-- Speed - libcurl is very fast and PycURL, being a thin wrapper above
-  libcurl, is very fast as well. PycURL `was benchmarked`_ to be several
-  times faster than requests_.
-- Features including multiple protocol support, SSL, authentication and
-  proxy options. PycURL supports most of libcurl's callbacks.
-- Multi_ and share_ interfaces.
-- Sockets used for network operations, permitting integration of PycURL
-  into the application's I/O loop (e.g., using Tornado_).
-
-.. _was benchmarked: http://stackoverflow.com/questions/15461995/python-requests-vs-pycurl-performance
-.. _requests: http://python-requests.org/
-.. _Multi: https://curl.haxx.se/libcurl/c/libcurl-multi.html
-.. _share: https://curl.haxx.se/libcurl/c/libcurl-share.html
-.. _Tornado: http://www.tornadoweb.org/
-
-
-Requirements
-------------
-
-- Python 2.7 or 3.4 through 3.6.
-- libcurl 7.19.0 or better.
-
-
-Installation
-------------
-
-Download source and binary distributions from `PyPI`_ or `Bintray`_.
-Binary wheels are now available for 32 and 64 bit Windows versions.
-
-Please see `the installation documentation`_ for installation instructions.
-
-.. _PyPI: https://pypi.python.org/pypi/pycurl
-.. _Bintray: https://dl.bintray.com/pycurl/pycurl/
-.. _the installation documentation: http://pycurl.io/docs/latest/install.html
-
-
-Documentation
--------------
-
-Documentation for the most recent PycURL release is available on
-`PycURL website <http://pycurl.io/docs/latest/>`_.
-
-
-Support
--------
-
-For support questions please use `curl-and-python mailing list`_.
-`Mailing list archives`_ are available for your perusal as well.
-
-Although not an official support venue, `Stack Overflow`_ has been
-popular with some PycURL users.
-
-Bugs can be reported `via GitHub`_. Please use GitHub only for bug
-reports and direct questions to our mailing list instead.
-
-.. _curl-and-python mailing list: http://cool.haxx.se/mailman/listinfo/curl-and-python
-.. _Stack Overflow: http://stackoverflow.com/questions/tagged/pycurl
-.. _Mailing list archives: https://curl.haxx.se/mail/list.cgi?list=curl-and-python
-.. _via GitHub: https://github.com/pycurl/pycurl/issues
-
-
-License
--------
-
-PycURL is dual licensed under the LGPL and an MIT/X derivative license
-based on the libcurl license. The complete text of the licenses is available
-in COPYING-LGPL_ and COPYING-MIT_ files in the source distribution.
-
-.. _libcurl: https://curl.haxx.se/libcurl/
-.. _urllib: http://docs.python.org/library/urllib.html
-.. _COPYING-LGPL: https://raw.githubusercontent.com/pycurl/pycurl/master/COPYING-LGPL
-.. _COPYING-MIT: https://raw.githubusercontent.com/pycurl/pycurl/master/COPYING-MIT
+        
+        PycURL is a Python interface to `libcurl`_, the multiprotocol file
+        transfer library. Similarly to the urllib_ Python module,
+        PycURL can be used to fetch objects identified by a URL from a Python program.
+        Beyond simple fetches however PycURL exposes most of the functionality of
 
 %package doc
 Summary: doc components for the pycurl package.
@@ -148,12 +73,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583205691
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1603400073
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build  --with-openssl
