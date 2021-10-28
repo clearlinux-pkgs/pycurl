@@ -4,7 +4,7 @@
 #
 Name     : pycurl
 Version  : 7.44.1
-Release  : 78
+Release  : 79
 URL      : https://files.pythonhosted.org/packages/47/f9/c41d6830f7bd4e70d5726d26f8564538d08ca3a7ac3db98b325f94cdcb7f/pycurl-7.44.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/47/f9/c41d6830f7bd4e70d5726d26f8564538d08ca3a7ac3db98b325f94cdcb7f/pycurl-7.44.1.tar.gz
 Summary  : PycURL -- A Python Interface To The cURL library
